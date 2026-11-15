@@ -65,8 +65,8 @@
         <!-- Login Form -->
         <form id="loginForm" onsubmit="submitLogin(event)" class="space-y-4">
           <div>
-            <label for="loginEmail" class="block text-xs font-semibold text-slate-700 mb-1">Email Address</label>
-            <input id="loginEmail" type="email" required placeholder="you@example.com" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-rose-700" />
+            <label for="loginEmail" class="block text-xs font-semibold text-slate-700 mb-1">Email or Username</label>
+            <input id="loginEmail" type="text" required placeholder="e.g. Admin or customer@email.com" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-rose-700" />
           </div>
           <div>
             <label for="loginPassword" class="block text-xs font-semibold text-slate-700 mb-1">Password</label>
@@ -76,7 +76,7 @@
             Sign In to NFS Motorworks
           </button>
           <p class="text-[11px] text-slate-500 text-center pt-1">
-            New user? Select <strong>Register Account</strong> to create your profile.
+            Customer? Select <strong>Register Account</strong>. Technicians are registered by Staff.
           </p>
 
           <!-- ROLE SWITCHER START (LOGIN PAGE) -->
@@ -107,23 +107,13 @@
             <label for="regEmail" class="block text-xs font-semibold text-slate-700 mb-1">Email Address</label>
             <input id="regEmail" type="email" required placeholder="email@example.com" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-rose-700" />
           </div>
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label for="regPhone" class="block text-xs font-semibold text-slate-700 mb-1">Phone Number</label>
-              <input id="regPhone" type="text" required placeholder="01X-XXXXXXX" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-rose-700" />
-            </div>
-            <div>
-              <label for="regRole" class="block text-xs font-semibold text-slate-700 mb-1">Account Role</label>
-              <select id="regRole" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-rose-700">
-                <option value="Customers">Customers</option>
-                <option value="Staff">Staff</option>
-                <option value="Technician">Technician</option>
-              </select>
-            </div>
+          <div>
+            <label for="regPhone" class="block text-xs font-semibold text-slate-700 mb-1">Phone Number</label>
+            <input id="regPhone" type="text" required placeholder="01X-XXXXXXX" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-rose-700" />
           </div>
           <div>
             <label for="regPassword" class="block text-xs font-semibold text-slate-700 mb-1">Password</label>
-            <input id="regPassword" type="password" required minlength="6" placeholder="Minimum 6 characters" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-rose-700" />
+            <input id="regPassword" type="password" required minlength="4" placeholder="Create password" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-rose-700" />
           </div>
           <button type="submit" class="w-full py-3 rounded-xl bg-rose-900 hover:bg-rose-800 text-white text-xs font-bold uppercase tracking-wider shadow-md transition">
             Create Account &amp; Enter Portal
@@ -442,16 +432,16 @@
               <input id="usrName" type="text" required class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm" />
             </div>
             <div>
-              <label for="usrEmail" class="block text-xs font-semibold text-slate-700 mb-1">Email</label>
-              <input id="usrEmail" type="email" required class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm" />
+              <label for="usrEmail" class="block text-xs font-semibold text-slate-700 mb-1">Email / Username</label>
+              <input id="usrEmail" type="text" required placeholder="e.g. tech1@nfsmotorworks.com" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm" />
             </div>
             <div class="grid grid-cols-2 gap-3">
               <div>
                 <label for="usrRole" class="block text-xs font-semibold text-slate-700 mb-1">Role</label>
                 <select id="usrRole" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm">
+                  <option value="Technician" selected>Technician</option>
                   <option value="Customers">Customers</option>
                   <option value="Staff">Staff</option>
-                  <option value="Technician">Technician</option>
                 </select>
               </div>
               <div>
@@ -837,7 +827,20 @@
       authenticated: false,
       user: null,
       activeView: '',
-      users: [],
+      users: [
+        {
+          id: 1,
+          user_code: 'STF-001',
+          full_name: 'System Administrator',
+          email: 'Admin',
+          password: 'Admin1',
+          role: 'Staff',
+          phone: '03-55109988',
+          branch: 'NFS Motorworks HQ',
+          address: 'Shah Alam, Selangor',
+          status: 'On Duty'
+        }
+      ],
       vehicles: [],
       serviceTypes: [],
       parts: [],
@@ -965,21 +968,14 @@
       }
       if (action === 'quick_role_login') {
         const targetRole = p.role || 'Customers';
-        let user = state.users.find(u => u.role === targetRole);
+        const user = state.users.find(u => u.role === targetRole);
         if (!user) {
-          user = {
-            id: state.users.length + 1,
-            user_code: 'USR-' + (100 + state.users.length + 1),
-            full_name: targetRole === 'Customers' ? 'Customer User' : `${targetRole} User`,
-            email: `${targetRole.toLowerCase()}@nfsmotorworks.local`,
-            password: 'quick-access',
-            role: targetRole,
-            phone: '-',
-            branch: 'NFS Motorworks HQ',
-            address: '',
-            status: targetRole === 'Customers' ? 'Active' : 'On Duty'
-          };
-          state.users.push(user);
+          if (targetRole === 'Technician') {
+            showToast('No Technician account exists yet. Log in as Staff (Admin / Admin1) to add a Technician under Manage User.', 'error');
+          } else {
+            showToast('No Customer account exists yet. Use Register Account to sign up.', 'error');
+          }
+          return null;
         }
         state.authenticated = true;
         state.user = user;
@@ -993,21 +989,21 @@
         return { ok: true };
       }
       if (action === 'register') {
-        if (state.users.some(u => u.email === p.email.toLowerCase())) {
+        if (state.users.some(u => u.email.toLowerCase() === p.email.toLowerCase())) {
           showToast('Email is already registered.', 'error');
           return null;
         }
         const newUser = {
           id: state.users.length + 1,
-          user_code: 'USR-' + (100 + state.users.length + 1),
+          user_code: 'CUST-' + (100 + state.users.length + 1),
           full_name: p.full_name,
-          email: p.email.toLowerCase(),
+          email: p.email,
           password: p.password,
-          role: p.role || 'Customers',
+          role: 'Customers',
           phone: p.phone,
           branch: 'NFS Motorworks HQ',
           address: '',
-          status: p.role === 'Customers' ? 'Active' : 'On Duty'
+          status: 'Active'
         };
         state.users.push(newUser);
         state.authenticated = true;
@@ -1016,9 +1012,9 @@
         return { ok: true };
       }
       if (action === 'login') {
-        const found = state.users.find(u => u.email === p.email.toLowerCase() && u.password === p.password);
+        const found = state.users.find(u => u.email.toLowerCase() === p.email.toLowerCase() && u.password === p.password);
         if (!found) {
-          showToast('Invalid email or password (register an account first).', 'error');
+          showToast('Invalid email/username or password.', 'error');
           return null;
         }
         state.authenticated = true;
@@ -1183,10 +1179,10 @@
         full_name: document.getElementById('regName').value.trim(),
         email: document.getElementById('regEmail').value.trim(),
         phone: document.getElementById('regPhone').value.trim(),
-        role: document.getElementById('regRole').value,
+        role: 'Customers',
         password: document.getElementById('regPassword').value
       });
-      if (res && res.ok) showToast('Account registered & signed in!');
+      if (res && res.ok) showToast('Customer account registered & signed in!');
     }
 
     async function logoutUser() {
