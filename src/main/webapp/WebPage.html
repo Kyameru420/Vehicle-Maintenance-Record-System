@@ -79,7 +79,7 @@
             Customer? Select <strong>Register Account</strong>. Technicians are registered by Staff.
           </p>
 
-          <!-- ROLE SWITCHER START (LOGIN PAGE) -->
+          <!-- ROLE SWITCHER START (LOGIN PAGE) to instantly log in as different types of users without manually typing credentials-->
           <div id="loginRoleSwitcher" class="pt-4 mt-4 border-t border-rose-100">
             <p class="text-[11px] font-bold uppercase tracking-wider text-rose-900/70 text-center mb-2">Quick Role Switcher</p>
             <div class="grid grid-cols-3 gap-2" role="group" aria-label="Login Role Switcher">
@@ -97,7 +97,7 @@
           <!-- ROLE SWITCHER END (LOGIN PAGE) -->
         </form>
 
-        <!-- Register Form -->
+        <!-- Register Form for customers-->
         <form id="registerForm" onsubmit="submitRegister(event)" class="hidden space-y-3.5">
           <div>
             <label for="regName" class="block text-xs font-semibold text-slate-700 mb-1">Full Name</label>
@@ -128,7 +128,7 @@
        ========================================================= -->
   <div id="portalShell" class="hidden min-h-screen flex flex-col">
 
-    <!-- Top Burgundy Header -->
+    <!-- Top Burgundy Header-->
     <header class="sticky top-0 z-30 bg-rose-950/95 backdrop-blur-md text-white border-b border-rose-800/70 shadow-lg no-print">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
         <div class="flex items-center gap-3">
@@ -196,7 +196,7 @@
     <!-- Main Workspace -->
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
 
-      <!-- 1. CUSTOMER: MANAGE PROFILE -->
+      <!-- 1. CUSTOMER'S PROFILE MANAGEMENT -->
       <section id="view-customer-profile" class="portal-view hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="bg-white/95 backdrop-blur-md rounded-2xl border border-rose-200/70 p-6 shadow-lg">
           <div class="flex items-center gap-4">
@@ -247,7 +247,7 @@
         </div>
       </section>
 
-      <!-- 2. CUSTOMER: MANAGE VEHICLE -->
+      <!-- 2. CUSTOMER'S VEHICLE MANAGEMENT -->
       <section id="view-customer-vehicles" class="portal-view hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="bg-white/95 backdrop-blur-md rounded-2xl border border-rose-200/70 p-6 shadow-lg">
           <h3 class="text-base font-bold text-slate-900">Register / Edit Vehicle</h3>
@@ -310,7 +310,7 @@
         </div>
       </section>
 
-      <!-- 3. CUSTOMER: BOOK APPOINTMENT -->
+      <!-- 3. CUSTOMER APPOINTMENT BOOKING-->
       <section id="view-customer-book" class="portal-view hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="bg-white/95 backdrop-blur-md rounded-2xl border border-rose-200/70 p-6 shadow-lg">
           <h3 class="text-base font-bold text-slate-900">Book Service Appointment</h3>
@@ -359,7 +359,7 @@
         </div>
       </section>
 
-      <!-- 4. CUSTOMER: TRACK SERVICE STATUS -->
+      <!-- 4. CUSTOMERS SERVICE STATUS TRACKER -->
       <section id="view-customer-track" class="portal-view hidden bg-white/95 backdrop-blur-md rounded-2xl border border-rose-200/70 p-6 shadow-lg space-y-4">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <div>
@@ -378,7 +378,7 @@
         <div id="customerTrackList" class="space-y-4"></div>
       </section>
 
-      <!-- 5. CUSTOMER: VIEW INVOICE -->
+      <!-- 5. CUSTOMERLS INVOICE -->
       <section id="view-customer-invoices" class="portal-view hidden bg-white/95 backdrop-blur-md rounded-2xl border border-rose-200/70 p-6 shadow-lg space-y-4">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <div>
@@ -394,7 +394,7 @@
         <div id="customerInvoiceList" class="space-y-3"></div>
       </section>
 
-      <!-- 6. SHARED: VIEW SERVICE HISTORY -->
+      <!-- 6. SERVICE HISTORY -->
       <section id="view-shared-history" class="portal-view hidden bg-white/95 backdrop-blur-md rounded-2xl border border-rose-200/70 p-6 shadow-lg">
         <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
           <div>
@@ -420,7 +420,7 @@
         </div>
       </section>
 
-      <!-- 7. STAFF: MANAGE USER -->
+      <!-- 7. USER MANAGEMENT handled by STAFF -->
       <section id="view-staff-users" class="portal-view hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="bg-white/95 backdrop-blur-md rounded-2xl border border-rose-200/70 p-6 shadow-lg">
           <h3 class="text-base font-bold text-slate-900">Add / Edit System User</h3>
@@ -489,7 +489,7 @@
         </div>
       </section>
 
-      <!-- 8. STAFF: MANAGE APPOINTMENT -->
+      <!-- 8. APPOINTMENT MANAGEMENT handled by STAFF -->
       <section id="view-staff-appointments" class="portal-view hidden bg-white/95 backdrop-blur-md rounded-2xl border border-rose-200/70 p-6 shadow-lg">
         <h3 class="text-base font-bold text-slate-900">Manage Workshop Appointments &amp; Dispatch</h3>
         <p class="text-xs text-slate-500 mb-4">Dispatch technicians and update job stages.</p>
@@ -510,7 +510,7 @@
         </div>
       </section>
 
-      <!-- 9. STAFF: MANAGE SERVICE TYPE -->
+      <!-- 9. SERVICE TYPE MANAGEMENT handled by STAFF -->
       <section id="view-staff-services" class="portal-view hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="bg-white/95 backdrop-blur-md rounded-2xl border border-rose-200/70 p-6 shadow-lg">
           <h3 class="text-base font-bold text-slate-900">Add / Edit Service Type</h3>
@@ -558,7 +558,7 @@
         </div>
       </section>
 
-      <!-- 10. STAFF: MANAGE PART STOCK -->
+      <!-- 10. PART STOCK MANAGEMENT handled by STAFF -->
       <section id="view-staff-parts" class="portal-view hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="bg-white/95 backdrop-blur-md rounded-2xl border border-rose-200/70 p-6 shadow-lg">
           <h3 class="text-base font-bold text-slate-900">Add / Edit Spare Part</h3>
@@ -612,7 +612,7 @@
         </div>
       </section>
 
-      <!-- 11. STAFF: GENERATE INVOICE -->
+      <!-- 11. INVOICE GENERATED by STAFF-->
       <section id="view-staff-invoices" class="portal-view hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="bg-white/95 backdrop-blur-md rounded-2xl border border-rose-200/70 p-6 shadow-lg">
           <h3 class="text-base font-bold text-slate-900">Generate Invoice</h3>
@@ -665,7 +665,7 @@
         </div>
       </section>
 
-      <!-- 12. STAFF: VIEW REPORTS -->
+      <!-- 12. REPORT VIEWING for Dashboard-->
       <section id="view-staff-reports" class="portal-view hidden bg-white/95 backdrop-blur-md rounded-2xl border border-rose-200/70 p-6 shadow-lg space-y-6">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <div>
@@ -706,7 +706,7 @@
         </div>
       </section>
 
-      <!-- 13. TECHNICIAN: VIEW ASSIGNED TASK -->
+      <!-- 13. ASSIGNED TASK VIEWING for TECHNICIAN -->
       <section id="view-tech-tasks" class="portal-view hidden bg-white/95 backdrop-blur-md rounded-2xl border border-rose-200/70 p-6 shadow-lg space-y-4">
         <div>
           <h3 class="text-base font-bold text-slate-900">Technician Assigned Tasks</h3>
@@ -715,7 +715,7 @@
         <div id="techTasksGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
       </section>
 
-      <!-- 14. TECHNICIAN: UPDATE JOBS STATUS -->
+      <!-- 14.  JOBS STATUS UPDATE by Technician-->
       <section id="view-tech-status" class="portal-view hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="bg-white/95 backdrop-blur-md rounded-2xl border border-rose-200/70 p-6 shadow-lg">
           <h3 class="text-base font-bold text-slate-900">Update Job Status</h3>
@@ -758,7 +758,7 @@
         </div>
       </section>
 
-      <!-- 15. TECHNICIAN: RECORD WORK AND PART -->
+      <!-- 15. WORK AND PART RECORD for Technician-->
       <section id="view-tech-work" class="portal-view hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="bg-white/95 backdrop-blur-md rounded-2xl border border-rose-200/70 p-6 shadow-lg">
           <h3 class="text-base font-bold text-slate-900">Record Work &amp; Part</h3>
@@ -801,7 +801,7 @@
     </main>
   </div>
 
-  <!-- OFFICIAL PRINTABLE INVOICE MODAL -->
+  <!-- INVOICE -->
   <div id="invoiceModal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-xs flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-lg w-full border border-rose-200 shadow-2xl overflow-hidden">
       <div class="bg-rose-950 px-6 py-4 flex items-center justify-between text-white">
